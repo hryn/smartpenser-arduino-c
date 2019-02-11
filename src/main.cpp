@@ -15,13 +15,13 @@ MFRC522 mfrc522(SS_PIN, RST_PIN);
 Servo servo;
 
 // INIT WEMOS ESP - WIFI
-const char* ssid     = "ARIF";
-const char* password = "";
+const char* ssid     = "Pixel_1687";
+const char* password = "04nov1994";
 
 // INIT HTTP ACCESS
 HTTPClient http;
 const char *HTTP_= "http://";
-const char *SERVER= "192.168.3.89";
+const char *SERVER= "192.168.43.186";
 const char *API_GET_DATA  = "/api/users";
 const char *API_POST_DATA  = "/api/users/drinks/insert";
 
@@ -123,7 +123,7 @@ bool set_mug(){
 	 if(infra < 500){
 		 is_mug_available = true;
 	 }else{
-		 //Serial.println("Mug tidak ditemukan");
+		 Serial.println("Mug tidak ditemukan");
 		 is_mug_available = false;
 	 }
 	 return true;
@@ -197,6 +197,7 @@ void loop(){
 					}
 
 					rfid = generate_rfid(mfrc522.uid.uidByte, mfrc522.uid.size);
+                    Serial.println(rfid);
 					find_user_id(rfid);
 					break;
 
